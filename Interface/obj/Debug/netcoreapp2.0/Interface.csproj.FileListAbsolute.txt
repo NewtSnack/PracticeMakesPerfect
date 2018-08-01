@@ -1,0 +1,10 @@
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Interface.deps.json
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Interface.runtimeconfig.json
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Interface.runtimeconfig.dev.json
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Interface.dll
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Interface.pdb
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Interface.csproj.CoreCompileInputs.cache
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Interface.AssemblyInfoInputs.cache
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Interface.AssemblyInfo.cs
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Interface.dll
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Interface.pdb
