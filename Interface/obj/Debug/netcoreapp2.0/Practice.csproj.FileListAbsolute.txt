@@ -1,0 +1,11 @@
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Practice.deps.json
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Practice.runtimeconfig.json
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Practice.runtimeconfig.dev.json
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Practice.dll
+C:\Users\Dar\Source\Repos\Interface\Interface\bin\Debug\netcoreapp2.0\Practice.pdb
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Practice.csprojResolveAssemblyReference.cache
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Practice.csproj.CoreCompileInputs.cache
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Practice.AssemblyInfoInputs.cache
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Practice.AssemblyInfo.cs
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Practice.dll
+C:\Users\Dar\Source\Repos\Interface\Interface\obj\Debug\netcoreapp2.0\Practice.pdb

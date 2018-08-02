@@ -48,6 +48,27 @@ namespace Practice
 
             //Protected, Inheritance, Delegates, Super Classes, Polymorphism, Virtual, Override, Inner Classes 
             Console.WriteLine("Class 7");
+            AnimalSealed whiskers = new AnimalSealed()
+            {
+                Name = "Whiskers",
+                Sound = "Meow"
+
+            };
+            Dog grover = new Dog()
+            {
+                Name = "Groover",
+                Sound = "Woof",
+                Sound2 = "Bark"
+
+            };
+
+            grover.Sound = "WOOOOOOOOOOOOOF";
+
+            whiskers.MakeSound();
+            grover.MakeSound();
+
+
+
             Console.ReadLine();
         }
 
