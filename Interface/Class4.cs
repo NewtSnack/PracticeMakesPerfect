@@ -23,7 +23,7 @@ namespace Practice
         {
             Console.WriteLine($"{Name} had the ID of {animalIDinfo.IDNum} and it owned by {animalIDinfo.Owner}");
         }
-        public void MakeSound()
+        public virtual void MakeSound() //virtual so now subclasses can override
         {
             Console.WriteLine($"{name} says {sound}");
         }
@@ -70,12 +70,25 @@ namespace Practice
 
             }
         }
+        public class AnimalHealth
+        {
+            public bool HealthyWeight(double height, double weight)
+            {
+                double calc = height / weight;
+
+                if ((calc >= .18) && (calc <= .27))
+                {
+                    return true;
+                }
+                else return false;
+            }
+        }
     }
     class Dog : AnimalSealed
     {
         public string Sound2 { get; set; } = "Grrr";
 
-        public new void MakeSound()
+        public override void MakeSound()
         {
              Console.WriteLine($"{Name} says {Sound} and {Sound2}");
         }

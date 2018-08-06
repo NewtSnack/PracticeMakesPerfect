@@ -62,16 +62,53 @@ namespace Practice
 
             };
 
-            grover.Sound = "WOOOOOOOOOOOOOF";
+            //grover.Sound = "WOOOOOOOOOOOOOF";
 
             whiskers.MakeSound();
             grover.MakeSound();
 
+            whiskers.SetAnimalIDInfo(12345, "Sally Su");
+            grover.SetAnimalIDInfo(12346, "Jimmy James");
+
+            whiskers.GetAnimalIDInfo();
+            grover.GetAnimalIDInfo();
+
+            AnimalSealed.AnimalHealth getHealth = new AnimalSealed.AnimalHealth();
+            Console.WriteLine("Is my animal healthy : {0}", getHealth.HealthyWeight(11,146));
+
+            AnimalSealed monkey = new AnimalSealed()
+            {
+                Name = "Happy",
+                Sound = "Eeeeee"
+            };
+
+            AnimalSealed spot = new Dog() //polymorphism
+            {
+                Name = "Spot",
+                Sound = "Wooof",
+                Sound2 = "Geeeerr"
+            };
+
+            monkey.MakeSound();
+            spot.MakeSound(); // use virtual to make this call the correct MakeSound();
+
 
 
             Console.ReadLine();
+
+            Console.WriteLine("Class 8");
+            //OOP Fighting
+            Warrior maximus = new Warrior("Maximus", 1000, 120, 40);
+            Warrior bob = new Warrior("Bob", 1000, 120, 40);
+            Battle.StartFight(maximus, bob);
+            Console.ReadLine();
+
+            Console.WriteLine("Class 9");
+            //Abstract classes, Abstract Methods, Base Classes, Is As, Casting, Polymorphism
+
+            Console.ReadKey();
         }
 
-        
+
     }
 }
