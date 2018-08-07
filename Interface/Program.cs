@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Practice
 {
@@ -27,9 +29,9 @@ namespace Practice
             Console.ReadKey(true);
 
             Console.WriteLine("Class 10");
-            ElectronicsAndDrive.Vehicle buick = new ElectronicsAndDrive.Vehicle("Buick", 4, 160);
+            Vehicle buick = new Vehicle("Buick", 4, 160);
 
-            if (buick is ElectronicsAndDrive.IDrivable)
+            if (buick is IDrivable)
             {
                 buick.Move();
                 buick.Stop();
@@ -39,10 +41,15 @@ namespace Practice
                 Console.WriteLine("The {0} can't be driven", buick.Brand);
             }
             IElectronicDevice TV = TVRemote.GetDevice();
+            IElectronicDevice DVDPlayer = DVDPlayerRemote.GetDevice();
+
 
             PowerButton powBut = new PowerButton(TV);
             powBut.Execute();
             powBut.Undo();
+
+            PowerButton powBut2 = new PowerButton(DVDPlayer);
+            powBut2.Execute();
 
             Console.ReadLine();
 
@@ -105,8 +112,93 @@ namespace Practice
 
             Console.WriteLine("Class 9");
             //Abstract classes, Abstract Methods, Base Classes, Is As, Casting, Polymorphism
+            Shape[] shapes = { new Circle(5), new Rectangle(4, 5) };
 
+            foreach(Shape s in shapes)
+            {
+                s.getInfo();
+                Console.WriteLine("The {0} Area : {1:f2}", s.Name, s.Area());
+                Circle testCirc = s as Circle;
+                if (testCirc == null)
+                {
+                    Console.WriteLine("This isn't a Circle");
+                }
+                if(s is Circle)
+                {
+                    Console.WriteLine("This isn't a Rectangle.");
+                }
+                Console.WriteLine();                
+            }
+            object circ1 = new Circle(4);
+            Circle circ2 = (Circle)circ1;
+
+            Console.WriteLine("The {0} Area is {1:f2}", circ2.Name, circ2.Area());
             Console.ReadKey();
+
+            Console.WriteLine("Class 11");
+            //Collections: ArrayLists, Dictionaries, Queues and Stacks
+            ArrayList aList = new ArrayList();
+            aList.Add("Bob");
+            aList.Add(40);
+
+            Console.WriteLine("Count: {0}", aList.Count);
+            Console.WriteLine("Capacity: {0}", aList.Capacity);
+
+            ArrayList aList2 = new ArrayList();
+            aList2.AddRange(new object[] { "Mike", "Sally", "Egg" });
+            aList.AddRange(aList2);
+            aList2.Sort();
+            aList2.Reverse();
+
+            aList2.Insert(1, "Turkey");
+            ArrayList range = aList2.GetRange(0, 2);
+
+            foreach(object o in range)
+            {
+                Console.WriteLine(o);
+            }
+
+            Console.WriteLine("Turkey Index : {0}", aList2.IndexOf("Turkey", 0));
+            string[] myArray = (string[])aList2.ToArray(typeof(string)); //arraylist to a string array
+
+            string[] customers = { "Bob", "Sally", "Sue" };
+
+            ArrayList cusArrayList = new ArrayList();
+            cusArrayList.AddRange(customers);
+
+            foreach(string s in cusArrayList)
+            {
+                Console.WriteLine(s);
+            }
+            //Dictionary           
+            Console.ReadLine();
+            Dictionary<string, string> superheroes = new Dictionary<string, string>();
+
+            superheroes.Add("Clark Kent", "Superman");
+            superheroes.Add("Bruce Wayne", "Batman");
+            superheroes.Add("Barry West", "The Flash");
+            superheroes.Remove("Barry West");
+            Console.WriteLine("Count : {0}", superheroes.Count);
+            Console.WriteLine("Clark Kent : {0}", superheroes.ContainsKey("Clark Kent"));
+
+            superheroes.TryGetValue("Clark Kent", out string test);
+            Console.WriteLine($"Clark Kent : {test}");
+
+            foreach(KeyValuePair<string, string> item in superheroes)
+            {
+                Console.WriteLine("{0} : {1}", item.Key, item.Value);
+            }
+            Console.ReadLine();
+            //Queue
+            Queue queue = new Queue();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+
+            foreach(object o in queue)
+            {
+                Console.WriteLine($)
+            }
         }
 
 

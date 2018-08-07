@@ -664,24 +664,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\darrc\\.nuget\\packages\\": {},
+    "C:\\Users\\Dar\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\darrc\\Source\\Repos\\PracticeMakesPerfect\\Interface\\Practice.csproj",
+      "projectUniqueName": "C:\\Users\\Dar\\Source\\Repos\\Interface\\Interface\\Practice.csproj",
       "projectName": "Practice",
-      "projectPath": "C:\\Users\\darrc\\Source\\Repos\\PracticeMakesPerfect\\Interface\\Practice.csproj",
-      "packagesPath": "C:\\Users\\darrc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\darrc\\Source\\Repos\\PracticeMakesPerfect\\Interface\\obj\\",
+      "projectPath": "C:\\Users\\Dar\\Source\\Repos\\Interface\\Interface\\Practice.csproj",
+      "packagesPath": "C:\\Users\\Dar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dar\\Source\\Repos\\Interface\\Interface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\darrc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Dar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
