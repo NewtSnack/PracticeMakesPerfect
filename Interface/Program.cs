@@ -191,15 +191,24 @@ namespace Practice
             Console.ReadLine();
             //Queue
             Queue queue = new Queue();
-            queue.Enqueue(1);
+            queue.Enqueue(4);
             queue.Enqueue(2);
-            queue.Enqueue(3);
+            queue.Enqueue(7);
+            Console.WriteLine("1 in Queue : {0}", queue.Contains(1));
+            Console.WriteLine("Remove 1st : {0}", queue.Dequeue());
+            Console.WriteLine("Peek 1st : {0}", queue.Peek());
 
-            foreach(object o in queue)
+            object[] numArray = queue.ToArray();
+
+            Console.WriteLine(string.Join(", ", numArray));
+
+            foreach (object o in queue)
             {
-                Console.WriteLine($)
+                Console.WriteLine($"Queue : {o}");
             }
+            Console.ReadKey();
         }
+        //Stack
 
 
     }
