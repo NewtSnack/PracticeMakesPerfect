@@ -206,9 +206,91 @@ namespace Practice
             {
                 Console.WriteLine($"Queue : {o}");
             }
+            Console.WriteLine();
             Console.ReadKey();
+
+            //Stack
+            Stack stack = new Stack();
+
+            stack.Push(4);
+            stack.Push(9);
+            stack.Push(2);
+
+            Console.WriteLine("Peek 1st : {0}", stack.Peek());
+
+            Console.WriteLine("Pop 1 : {0}", stack.Pop());
+
+            Console.WriteLine("Contains 2: {0}", stack.Contains(2));
+
+            object[] numArray2 = stack.ToArray();
+
+            Console.WriteLine(string.Join(", ", numArray2));
+
+            foreach (object s in stack)
+            {
+                Console.WriteLine($"Stack : {s}");
+            }
+            Console.ReadKey();
+            Console.WriteLine("Class 12");
+            //Generics
+
+            List<Bug> bugList = new List<Bug>();
+            bugList.Add(new Bug() {Name = "Bitey" });
+            bugList.Add(new Bug() { Name = "Snapper" });
+            bugList.Add(new Bug() { Name = "Max" });
+
+            bugList.Insert(1, new Bug() { Name = "Jensen" });
+            bugList.RemoveAt(1);
+
+            Console.WriteLine("Number of Bugs : {0}", bugList.Count);
+            foreach (Bug b in bugList)
+            {
+                Console.WriteLine(b.Name);
+            }
+
+            int x = 5, y = 4;
+            Bug.GetSum(ref x, ref y);
+
+            string strX = "5", strY = "4";
+            Bug.GetSum(ref strX, ref strY);
+            Triangle<int> tri1 = new Triangle<int>(20, 10);
+            Console.WriteLine("Area is : {0}", tri1.GetArea());
+            Triangle<string> tri2 = new Triangle<string>("42", "10");
+            Console.WriteLine("Area is : {0}", tri2.GetArea());
+
+            //Delegates
+            Arithmetic add, sub, addSub;
+
+            add = new Arithmetic(Add);
+            sub = new Arithmetic(Subtract);
+            addSub = add + sub;
+            sub = addSub - add;
+            Console.WriteLine();
+            Console.WriteLine($"Add 6 & 10");
+            add(6, 10);
+            Console.WriteLine($"Add & Subtract 10 & 4");
+            addSub(10, 4);
+            Console.WriteLine($"Add & Subtract - Add 10 & 4");
+            sub(10, 4);
+
+            Console.WriteLine("Class 13");
+            //Manipulating Lists: Lambda, Where, ToList, Select, Zip, Aggregate, Average, All, Any, Distinct, Except, Intersect
+
+
+
+            Console.ReadKey();
+
         }
-        //Stack
+        public delegate void Arithmetic(double num1, double num2);
+
+        public static void Add(double num1, double num2)
+        {
+            Console.WriteLine($"{num1} + {num2} = {num1 + num2}");
+        }
+        public static void Subtract(double num1, double num2)
+        {
+            Console.WriteLine($"{num1} - {num2} = {num1 - num2}");
+        }
 
 
     }
