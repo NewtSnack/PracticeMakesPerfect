@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Practice
 {
@@ -8,6 +9,39 @@ namespace Practice
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Class 14"); //Custom Collections, Indexers, Enumerator, Operator Overloading, Custom Casting, Anonymous Types
+            ShoeFarm myShoes = new ShoeFarm();
+            myShoes[0] = new Shoe("Puma");
+            myShoes[1] = new Shoe("Jordan");
+            myShoes[2] = new Shoe("Sketchers");
+            myShoes[3] = new Shoe("Vans");
+            foreach (Shoe item in myShoes)
+            {
+                Console.WriteLine(item.Name);
+            }
+
+            Box box1 = new Box(2, 3, 4);
+            Box box2 = new Box(5, 6, 7);
+
+            Box box3 = box1 + box2;
+            Console.WriteLine($"Box 3 : {box3}");
+
+            Console.WriteLine($"Box Int : {(int)box3}");
+
+            Box box4 = (Box)4;
+            Console.WriteLine($"Box 4 : {(Box)4}");
+
+            var shopkins = new { Name = "Shopkins", Price = 4.99 }; //Anon Types
+            Console.WriteLine("{0} cost ${1}", shopkins.Name, shopkins.Price);
+
+            var toyArray = new[] { new { Name = "Yo-Kai Pack", Price = 4.99 }, new { Name = "Legos", Price = 9.99 } };
+
+            foreach (var item in toyArray)
+            {
+                Console.WriteLine("{0} costs ${1}", item.Name, item.Price);
+            }
+
+            Console.ReadLine();
             //public private, protected Constants, Read-Only, Constructors, Setters, Getters, Properties and Static Fields
             Console.WriteLine("Class 6");
             Animal cat = new Animal();
@@ -275,6 +309,74 @@ namespace Practice
 
             Console.WriteLine("Class 13");
             //Manipulating Lists: Lambda, Where, ToList, Select, Zip, Aggregate, Average, All, Any, Distinct, Except, Intersect
+            doubltIt dblIt = u => u * 2; //lambda
+            Console.WriteLine($"5 * 2 = {dblIt(5)}");
+
+            List<int> numList = new List<int> { 1, 9, 2, 6, 3 };
+            var evenList = numList.Where(a => a % 2 == 0).ToList(); //where ToList
+
+            foreach(var j in evenList)
+            {
+                Console.WriteLine(j);
+            }
+            Console.WriteLine();
+
+            var rangeList = numList.Where(v => (v > 2 && (v < 9)));
+            foreach (var j in rangeList)
+            {
+                Console.WriteLine(j);
+            }
+            List<int> flipList = new List<int>();
+
+            int i = 0;
+            Random rnd = new Random();
+            while (i < 100)
+            {
+                flipList.Add(rnd.Next(1, 3));
+                i++;
+            }
+            Console.WriteLine("Heads : {0}", flipList.Where(a => a == 1).ToList().Count());
+            Console.WriteLine("Tails : {0}", flipList.Where(a => a == 2).ToList().Count());
+            Console.WriteLine();
+            var nameList = new List<string> { "Doug", "Sally", "Sue" };
+            var sNameList = nameList.Where(a => a.StartsWith("S"));
+            foreach(var m in sNameList)
+            {
+                Console.WriteLine(m);
+            }
+            Console.ReadKey();
+            Console.WriteLine("Select");
+            var oneTo10 = new List<int>();    //Select
+            oneTo10.AddRange(Enumerable.Range(1, 10));
+
+            var squares = oneTo10.Select(b => b * b);
+            foreach(var yy in squares)
+            {
+                Console.WriteLine(yy);
+            }
+            Console.ReadKey();
+            Console.WriteLine("Zip");
+            var listOne = new List<int>(new int[] { 1, 3, 4 }); //Zip
+            var listTwo = new List<int>(new int[] { 4, 6, 8 });
+            var sumList = listOne.Zip(listTwo, (xx,h) => xx + h).ToList();
+            foreach (var item in sumList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadKey();
+            Console.WriteLine("Aggregate");
+            var listThree = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 8}); //Aggregate
+            Console.WriteLine("Sum: {0}", listThree.Aggregate((g,gg) => g + gg));
+            Console.ReadKey();
+            Console.WriteLine("Average");
+            var listFour = new List<int>(new int[] { 2, 6, 7, 1, 7, 1, 2, 2 });//Average
+            Console.WriteLine("Avg : {0}", listFour.AsQueryable().Average());
+            Console.WriteLine("All > 3 : {0}",listFour.All(hh => hh > 3)); //All
+            Console.WriteLine("Any > 3 : {0}", listFour.Any(hh => hh > 3)); //Any
+            var listFive = new List<int>(new int[] { 2, 6, 7, 1, 7, 1, 2, 2 });//Distinct
+            Console.WriteLine("Distinct : {0}", string.Join(", ", listFive.Distinct()));
+            Console.WriteLine("Except: {0}", string.Join(", ", listThree.Except(listFive)));//Except lists the values from list listThree not in listFive
+            Console.WriteLine("Intersect: {0}", string.Join(", ", listThree.Intersect(listFive)));//Intersect lists the values both in listFive and listThree
 
 
 
@@ -291,7 +393,7 @@ namespace Practice
         {
             Console.WriteLine($"{num1} - {num2} = {num1 - num2}");
         }
-
+        delegate double doubltIt(double val);
 
     }
 }
