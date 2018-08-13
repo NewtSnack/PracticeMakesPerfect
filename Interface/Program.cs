@@ -16,7 +16,7 @@ namespace Practice
                                           //Stream Reader, BinaryWriter, BinaryReader
 
             DirectoryInfo currDir = new DirectoryInfo(".");
-            DirectoryInfo DarDir = new DirectoryInfo(@"C:\Users\darrc");
+            DirectoryInfo DarDir = new DirectoryInfo(@"C:\Users\Dar");
             Console.WriteLine(DarDir.FullName);
             Console.WriteLine(DarDir.Name);
             Console.WriteLine(DarDir.Parent);
@@ -30,12 +30,56 @@ namespace Practice
                 "Robert Smith"
             };
             string textFilePath = @"C:\Users\darrc\Documents\CData\testfile1.txt";
-            File.WriteAllLines(textFilePath, customers2);
-            foreach (string cust in File.ReadAllLines(textFilePath))
+            string textFilePathL = @"C:\Users\Dar\Documents\CSharptestfiles\testfile1.txt";
+
+            File.WriteAllLines(textFilePathL, customers2);
+            foreach (string cust in File.ReadAllLines(textFilePathL))
             {
                 Console.WriteLine($"Customer : {cust}");
             }
 
+            DirectoryInfo myDataDir = new DirectoryInfo(@"C:\Users\Dar\Documents\CSharptestfiles\");
+
+            FileInfo[] txtFiles = myDataDir.GetFiles("*.txt", SearchOption.AllDirectories);
+
+            Console.WriteLine("Matches : {0}", txtFiles.Length);
+            foreach (FileInfo file in txtFiles)
+            {
+                Console.WriteLine(file.Name);
+                Console.WriteLine(file.Length);
+            }
+
+            string textFilePath2 = @"C:\Users\darrc\Documents\CData\testfile2.txt";
+            string textFilePath2L = @"C:\Users\Dar\Documents\CSharptestfiles\testfile2.txt";
+
+
+            FileStream fs = File.Open(textFilePath2, FileMode.Create);
+            string randString = "This is a random string";
+            byte[] rsByteArray = Encoding.Default.GetBytes(randString);
+
+            fs.Write(rsByteArray, 0, rsByteArray.Length);
+            fs.Position = 0;
+            byte[] fileByteArray = new byte[rsByteArray.Length];
+            for (int q = 0; q < rsByteArray.Length; q++)
+            {
+                fileByteArray[q] = (byte)fs.ReadByte();
+            }
+            Console.WriteLine(Encoding.Default.GetString(fileByteArray));
+            fs.Close();
+            string textFilePath3 = @"C:\Users\darrc\Documents\CData\testfile3.txt";
+            string textFilePath3L = @"C:\Users\Dar\Documents\CSharptestfiles\testfile3.txt";
+
+            StreamWriter sw = File.CreateText(textFilePath3);
+            sw.Write("This is a random ");
+            sw.WriteLine("sentence");
+            sw.WriteLine("This is another sentence");
+            sw.Close();
+            StreamReader sr = File.OpenText(textFilePath3);
+            Console.WriteLine("Peek : {0}", Convert.ToChar(sr.Peek()));
+            Console.WriteLine("1st String : {0}", sr.ReadLine());
+            Console.WriteLine("Everything : {0}", sr.ReadToEnd());
+            sr.Close();
+;
             Console.ReadLine();
             Console.WriteLine("Class 15");//LINQ, From, Where, Orderby, Select, IEnumerable, Inner Joins and Group Joins
             QueryStringArray();
