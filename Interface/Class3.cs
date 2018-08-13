@@ -10,6 +10,9 @@ namespace Practice
         private string name;
         private string sound;
 
+        public double Height { get; set; }
+        public int Weight { get; set; }
+
         public const string SHELTER = "Derek's Home for Animals";
         //set at run-time inside consructors, can't be changed
         public readonly int idNum;
@@ -19,13 +22,17 @@ namespace Practice
             Console.WriteLine("{0} says {1}", name, sound);
         }
         public Animal()
-            : this("No Name", "No Sound") { } // :this calls the main constructor
+            : this("No Name", "No Sound",0,0) { } // :this calls the main constructor
         public Animal(string name)
-            : this(name, "No Sound") { }
+            : this(name, "No Sound",0,0) { }
         public Animal(string name, string sound)
+            : this(name, sound, 0, 0) { }
+        public Animal(string name, string sound, int height, int weight)
         {
             SetName(name);
             Sound = sound;
+            Height = height;
+            Weight = weight;
 
             NumOfAnimals = 1;
 

@@ -95,6 +95,25 @@ namespace Practice
         {
             return String.Format("Box with Height : {0} Width : {1} Breadth : {2}", Length, Width, Breadth);
         }
+
+        public override bool Equals(object obj)
+        {
+            var box = obj as Box;
+            return box != null &&
+                   Length == box.Length &&
+                   Width == box.Width &&
+                   Breadth == box.Breadth;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1310040851;
+            hashCode = hashCode * -1521134295 + Length.GetHashCode();
+            hashCode = hashCode * -1521134295 + Width.GetHashCode();
+            hashCode = hashCode * -1521134295 + Breadth.GetHashCode();
+            return hashCode;
+        }
+
         public static explicit operator int(Box b)
         {
             return (int)(b.Length + b.Width + b.Breadth) / 3;

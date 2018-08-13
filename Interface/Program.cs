@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Text;
+
 
 namespace Practice
 {
@@ -9,6 +12,36 @@ namespace Practice
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Class 17");//File System, File, DirectoryInfo, FileInfo, FileStream, StreamWriter
+                                          //Stream Reader, BinaryWriter, BinaryReader
+
+            DirectoryInfo currDir = new DirectoryInfo(".");
+            DirectoryInfo DarDir = new DirectoryInfo(@"C:\Users\darrc");
+            Console.WriteLine(DarDir.FullName);
+            Console.WriteLine(DarDir.Name);
+            Console.WriteLine(DarDir.Parent);
+            Console.WriteLine(DarDir.Attributes);
+            Console.WriteLine(DarDir.CreationTime);
+            DirectoryInfo dataDir = new DirectoryInfo(@"C:\Users\darrc\Documents\C#Data");
+            string[] customers2 =
+            {
+                "Bob Smith",
+                "Sally Smith",
+                "Robert Smith"
+            };
+            string textFilePath = @"C:\Users\darrc\Documents\CData\testfile1.txt";
+            File.WriteAllLines(textFilePath, customers2);
+            foreach (string cust in File.ReadAllLines(textFilePath))
+            {
+                Console.WriteLine($"Customer : {cust}");
+            }
+
+            Console.ReadLine();
+            Console.WriteLine("Class 15");//LINQ, From, Where, Orderby, Select, IEnumerable, Inner Joins and Group Joins
+            QueryStringArray();
+            QueryIntArray();
+            QueryArrayList();
+            Console.ReadKey();
             Console.WriteLine("Class 14"); //Custom Collections, Indexers, Enumerator, Operator Overloading, Custom Casting, Anonymous Types
             ShoeFarm myShoes = new ShoeFarm();
             myShoes[0] = new Shoe("Puma");
@@ -382,6 +415,64 @@ namespace Practice
 
             Console.ReadKey();
 
+        }
+        static void QueryStringArray()
+        {
+            string[] dogs = { "K9", "Brian Griffin", "Scooby Doo", "Old Yeller", "Rin Tin Tin", "Benji", "Charlie B. Barkin", "Lassie", "Snoopy" };
+            var dogSpaces = from dog in dogs
+                            where dog.Contains(" ")
+                            orderby dog descending
+                            select dog;
+            foreach(var i in dogSpaces)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine();
+        }
+        
+        static int[] QueryIntArray()
+        {
+            int[] nums = { 5, 10, 15, 20, 25, 30, 35 };
+            var gt20 = from num in nums
+                       where num > 20
+                       orderby num
+                       select num;
+            foreach (var item in gt20)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine($"Get Type : {gt20.GetType()}");
+            var listGT20 = gt20.ToList<int>();
+            var arrayGT20 = gt20.ToArray();
+
+            nums[0] = 40;
+            foreach (var item in gt20)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            return arrayGT20;            
+        }
+
+        static void QueryArrayList()
+        {
+            ArrayList famOwners = new ArrayList()
+            {
+            new Owner {Name = "Sten",Owners = 2},
+            new Owner {Name = "Jack",Owners = 1},
+            new Owner {Name = "Trea",Owners = 5},
+            };
+            var famOwner = famOwners.OfType<Owner>();
+            var smOwners = from owners in famOwner
+                            where owners.Owners < 2
+                            orderby owners.Name
+                            select owners;
+            foreach (var item in smOwners)
+            {
+                Console.WriteLine("{0} has {1} Owners", item.Name,item.Owners);
+            }
         }
         public delegate void Arithmetic(double num1, double num2);
 
