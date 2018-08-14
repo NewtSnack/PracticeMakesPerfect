@@ -53,7 +53,7 @@ namespace Practice
             string textFilePath2L = @"C:\Users\Dar\Documents\CSharptestfiles\testfile2.txt";
 
 
-            FileStream fs = File.Open(textFilePath2, FileMode.Create);
+            FileStream fs = File.Open(textFilePath2L, FileMode.Create);
             string randString = "This is a random string";
             byte[] rsByteArray = Encoding.Default.GetBytes(randString);
 
@@ -69,17 +69,39 @@ namespace Practice
             string textFilePath3 = @"C:\Users\darrc\Documents\CData\testfile3.txt";
             string textFilePath3L = @"C:\Users\Dar\Documents\CSharptestfiles\testfile3.txt";
 
-            StreamWriter sw = File.CreateText(textFilePath3);
+            StreamWriter sw = File.CreateText(textFilePath3L);
             sw.Write("This is a random ");
             sw.WriteLine("sentence");
             sw.WriteLine("This is another sentence");
             sw.Close();
-            StreamReader sr = File.OpenText(textFilePath3);
+
+            StreamReader sr = File.OpenText(textFilePath3L);
             Console.WriteLine("Peek : {0}", Convert.ToChar(sr.Peek()));
             Console.WriteLine("1st String : {0}", sr.ReadLine());
             Console.WriteLine("Everything : {0}", sr.ReadToEnd());
             sr.Close();
-;
+
+            string textFilePath4L = @"C:\Users\Dar\Documents\CSharptestfiles\testfile4.dat";
+
+            FileInfo datFile = new FileInfo(textFilePath4L);
+            BinaryWriter bw = new BinaryWriter(datFile.OpenWrite());
+
+            string randText = "Random Text";
+            int myAge = 42;
+            double height = 6.25;
+
+            bw.Write(randText);
+            bw.Write(myAge);
+            bw.Write(height);
+
+            bw.Close();
+
+            BinaryReader br = new BinaryReader(datFile.OpenRead());
+            Console.WriteLine(br.ReadString());
+            Console.WriteLine(br.ReadInt32());
+            Console.WriteLine(br.ReadDouble());
+            br.Close();
+
             Console.ReadLine();
             Console.WriteLine("Class 15");//LINQ, From, Where, Orderby, Select, IEnumerable, Inner Joins and Group Joins
             QueryStringArray();
