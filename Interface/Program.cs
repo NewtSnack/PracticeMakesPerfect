@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 
 namespace Practice
@@ -12,6 +14,92 @@ namespace Practice
     {
         static void Main(string[] args)
         {
+            Hash.HashExample();
+            int[][] grid = {
+                new int[] { 3, 0, 8, 4 },
+                new int[] { 2, 4, 5, 7 },
+                new int[] { 9, 2, 6, 3 },
+                new int[] { 0, 3, 1, 0 },
+            };
+            MaxIncreaseKeepingSkyline(grid);
+
+            Recur("ASNGKSLWPISSDFMGG");
+            NonRecur("ABBAGEE PEE EXEEGSSSSS");
+            int[] numberlist = { 9,1,9,9,9};
+            AddOne(numberlist);
+            double[][] pointset =
+            {
+                new double[] {-2,4},
+                new double[] {0,-2},
+                new double[] {-1,0},
+                new double[] {3,5},
+                new double[] {-2,-3 },
+                new double[] {3,2 }
+            };
+            Kclose(pointset, 2);
+
+            
+            
+            Console.WriteLine("Class 18");//Serialization, Serialize, Deserialize, BinaryFormatter, XMLSerializer
+            Bug bowser = new Bug("Bowser", 45, 25);
+            
+            Stream stream = File.Open("BugData.dat", FileMode.Create);
+
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, bowser);
+            stream.Close();
+
+            bowser = null;
+            stream = File.Open("BugData.dat", FileMode.Open);
+            bf = new BinaryFormatter();
+            bowser = (Bug)bf.Deserialize(stream);
+            stream.Close();
+            Console.WriteLine(bowser.ToString());
+
+            bowser.Weight = 50;
+            XmlSerializer serialzier = new XmlSerializer(typeof(Bug));
+            using(TextWriter tw = new StreamWriter(@"C:\Users\Dar\Documents\CSharptestfiles\bowser.xml"))
+            {
+                serialzier.Serialize(tw, bowser);
+            }
+            bowser = null;
+            XmlSerializer deserializer = new XmlSerializer(typeof(Bug));
+            TextReader reader = new StreamReader(@"C:\Users\Dar\Documents\CSharptestfiles\bowser.xml");
+            object obj = deserializer.Deserialize(reader);
+            bowser = (Bug)obj;
+            reader.Close();
+
+            Console.WriteLine(bowser.ToString());
+
+            List<Bug> theBugs = new List<Bug>()
+            {
+                new Bug("Mario", 60 ,30),
+                new Bug("Luigi",55,24),
+                new Bug("Waluigi", 40,20)
+            };
+
+            using(Stream fs2 = new FileStream(@"C:\Users\Dar\Documents\CSharptestfiles\Bugs.xml", FileMode.Create, FileAccess.Write,FileShare.None))
+            {
+                XmlSerializer serializer2 = new XmlSerializer(typeof(List<Bug>));
+                serializer2.Serialize(fs2, theBugs);
+            }
+            theBugs = null;
+
+            XmlSerializer serializer3 = new XmlSerializer(typeof(List<Bug>));
+            using(FileStream fs2 = File.OpenRead(@"C:\Users\Dar\Documents\CSharptestfiles\Bugs.xml"))
+            {
+                theBugs = (List<Bug>)serializer3.Deserialize(fs2);
+            }
+            foreach(Bug a in theBugs)
+            {
+                Console.WriteLine(a.ToString());
+            }
+
+        
+
+
+
+            Console.ReadLine();
             Console.WriteLine("Class 17");//File System, File, DirectoryInfo, FileInfo, FileStream, StreamWriter
                                           //Stream Reader, BinaryWriter, BinaryReader
 
@@ -109,11 +197,13 @@ namespace Practice
             QueryArrayList();
             Console.ReadKey();
             Console.WriteLine("Class 14"); //Custom Collections, Indexers, Enumerator, Operator Overloading, Custom Casting, Anonymous Types
-            ShoeFarm myShoes = new ShoeFarm();
-            myShoes[0] = new Shoe("Puma");
-            myShoes[1] = new Shoe("Jordan");
-            myShoes[2] = new Shoe("Sketchers");
-            myShoes[3] = new Shoe("Vans");
+            ShoeFarm myShoes = new ShoeFarm
+            {
+                [0] = new Shoe("Puma"),
+                [1] = new Shoe("Jordan"),
+                [2] = new Shoe("Sketchers"),
+                [3] = new Shoe("Vans")
+            };
             foreach (Shoe item in myShoes)
             {
                 Console.WriteLine(item.Name);
@@ -482,6 +572,113 @@ namespace Practice
             Console.ReadKey();
 
         }
+        static string Recur(string s)
+        {
+            Dictionary<char, int> countdict = new Dictionary<char, int>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!countdict.ContainsKey(s[i]))
+                {
+                    countdict.Add(s[i], 1); //first occurence
+                }
+                else
+                {
+                    //the key is already in the table and therefore:
+                    Console.WriteLine(s[i].ToString());
+                    return s[i].ToString();
+                }
+            }
+            Console.WriteLine("None Found");
+            return null;
+        }
+        static string NonRecur(string s)
+        {
+            char[] splitarr = s.ToCharArray();
+            for (int i = 0; i < splitarr.Length; i++)
+            {
+                char inquestion = splitarr[i];
+                splitarr[i] = (char)0;
+                if (!splitarr.Contains(inquestion))
+                {
+                    Console.WriteLine(inquestion.ToString());
+                    return inquestion.ToString();
+                }
+                splitarr[i] = inquestion;
+            }
+            return null;
+        }
+        static int[] AddOne(int[] arr) //adding one to a number presented as a single digit per element array
+            /*1 3 4 -> 1 3 5
+             *5 6 9 -> 5 7 0
+             *9 9 9 -> 1 0 0 0
+             * 1 2 9 9 -> 1 3 0 0
+             */
+        {
+            int lastindex = arr.Length - 1;
+            if (arr[lastindex] != 9)
+            {
+                arr[lastindex] = arr[lastindex] + 1;
+                foreach (var item in arr)
+                {
+                    Console.Write(item + ", ");
+                }
+                return arr;
+            }
+            else
+            {
+                if (arr.All(z => z == 9))
+                {
+                    int[] newarr = new int[lastindex + 2];
+                    Array.Clear(newarr, 0, lastindex + 1);
+                    newarr[0] = 1;
+                    foreach (var item in newarr)
+                    {
+                        Console.Write(item + ", ");
+                    }
+                    return newarr;
+                }
+                else
+                {
+                    var selected = lastindex;
+                    while(arr[selected] == 9)
+                    {
+                        arr[selected] = 0;
+                        selected--;
+                    }
+                    arr[selected] = arr[selected] + 1;
+                    foreach (var item in arr)
+                    {
+                        Console.Write(item + ", ");
+                    }
+                    Console.WriteLine();
+                    return arr;
+                }
+            }
+            
+        }
+
+        static void Kclose(double[][] points, int K) //K closest points to origin
+        {
+            double[][] pointsNdist = new double[points.Count()][];
+            int j = 0;
+            foreach (var item in points)
+            {
+                var distance = Math.Sqrt(item[0] * item[0] + item[1] * item[1]);
+                pointsNdist[j] = new double[] { item[0], item[1], distance };
+                j++;                
+            }
+            var orderedclose = (from point in pointsNdist
+                        orderby point[2] ascending
+                        select point).ToArray();
+            int i = 0; 
+            while (i  != K )
+            {
+                Console.WriteLine("({0} , {1}) At a distance of {2}",  orderedclose[i][0],pointsNdist[i][1],orderedclose[i][2]);
+                i++;
+            }
+
+        }
+
         static void QueryStringArray()
         {
             string[] dogs = { "K9", "Brian Griffin", "Scooby Doo", "Old Yeller", "Rin Tin Tin", "Benji", "Charlie B. Barkin", "Lassie", "Snoopy" };
@@ -551,6 +748,33 @@ namespace Practice
             Console.WriteLine($"{num1} - {num2} = {num1 - num2}");
         }
         delegate double doubltIt(double val);
+ 
+        static int MaxIncreaseKeepingSkyline(int[][] grid)
+        {
+            int diff = 0;
+            var row = new int[grid.GetLength(0)];
+            var col = new int[grid[0].GetLength(0)];
+
+            // Get max for each row and each col;
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid[i].GetLength(0); j++)
+                {
+                    row[i] = Math.Max(row[i], grid[i][j]);
+                    col[j] = Math.Max(col[j], grid[i][j]);
+                }
+            }
+
+            // How tall the building can be;
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid[i].GetLength(0); j++)
+                    diff += Math.Min(row[i], col[j]) - grid[i][j];
+            }
+
+            return diff;
+        }
+        
 
     }
 }

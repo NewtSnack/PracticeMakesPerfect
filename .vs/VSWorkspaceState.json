@@ -1,8 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Interface"
+    "\\Interface",
+    "\\Interface\\bin",
+    "\\Interface\\bin\\Debug",
+    "\\Interface\\bin\\Debug\\netcoreapp2.0",
+    "\\Interface\\obj",
+    "\\Interface\\obj\\Debug",
+    "\\Interface\\obj\\Debug\\netcoreapp2.0"
   ],
-  "SelectedNode": "\\Interface\\Practice.csproj",
+  "SelectedNode": "\\Interface\\Shoe.cs",
   "PreviewInSolutionExplorer": false
 }
